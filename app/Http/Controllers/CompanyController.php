@@ -54,14 +54,16 @@ class CompanyController extends Controller
             $imagePath = Storage::disk('public')->putFile('logo', $request->file('logo'));
         }
 
-        print "<pre>"; print_r( $request->all()); print "</pre>";
-      
         $res = Company::create([
             'name' => $request->name,
             'email' => $request->email,
             'logo' => $imagePath,
             'adress' => $request->adress          
         ]);
+
+        if($res){
+            return redirect()->route('company.index')->with('status', 'Profile updated!');
+        }
     }
 
     /**
@@ -103,12 +105,23 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'adress' => 'required'
+        ]);
+
         $company = Company::findOrFail($id);
 
         $company->name = $request->name;
         $company->email = $request->email;
         $company->adress = $request->adress;
+
+        if ($request->hasFile('logo')) {
+
+            $company->logo = Storage::disk('public')->putFile('logo', $request->file('logo'));
+        }
 
         if($company->save()){
             return redirect()->route('company.show', ['company' => $id])->with('status', 'Profile updated!');

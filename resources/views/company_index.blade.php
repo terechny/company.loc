@@ -50,8 +50,11 @@
                         </table>
                     </div>
                     <div class="row mt-4">                       
-                            <div> </div>
-                        </div>
+                        <div> 
+                            <button type="button" class="btn btn-sm btn-outline-primary"> 
+                                <a href="{{ route('company.create') }}">Add Company</a> 
+                            </button>                             
+                        </div>                      
                     </div>
                </div>
 

@@ -22,7 +22,7 @@
                                         <p class="mt-2"> <b> Add company </b> </p>
                                         <hr>
 
-                                        <form action="{{ route('сompany.store') }}" method="POST" enctype="multipart/form-data">                                        
+                                        <form action="{{ route('company.store') }}" method="POST" enctype="multipart/form-data">                                        
                                             <div class="mb-3">
                                                 <label class="form-label">Company name</label>
                                                 <input type="text" name="name" class="form-control">
