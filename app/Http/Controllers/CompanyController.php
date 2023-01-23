@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
+use App\Models\Employee;
 
 
 class CompanyController extends Controller
@@ -136,6 +137,11 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $company = Company::findOrFail($id);
+        $company->employees()->delete();     
+        $company->delete();
+     
+        return redirect()->route('company.index')->with('status', 'Profile updated!');
     }
 }

@@ -42,6 +42,13 @@
                                         </form>
                                                                             
                                     </div>
+                                    <div class="p-2">
+                                        <form action="{{ route('company.destroy', ['company' => $company->id]) }}" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>                                                                                    
+                                    </div>
                         
                                </div>                              
                         </div>
