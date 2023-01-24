@@ -16,9 +16,9 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () { return view('welcome'); })->name('home');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::resource('/dashboard/company', CompanyController::class);

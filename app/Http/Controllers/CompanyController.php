@@ -121,6 +121,7 @@ class CompanyController extends Controller
 
         if ($request->hasFile('logo')) {
 
+            Storage::disk('public')->delete($company->logo);
             $company->logo = Storage::disk('public')->putFile('logo', $request->file('logo'));
         }
 
